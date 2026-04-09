@@ -1,0 +1,46 @@
+.app-container {
+    max-width: 800px;
+    min-height: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid green;
+    background-color: lightgray;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.app-title {
+    text-align: center;
+}
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  width: 100%;
+  padding: 10px 0;
+  margin-top: 20px;
+
+  border-top: 1px solid #ccc;
+}
+
+.footer-links {
+  display: flex;
+  gap: 15px;
+}
+
+.footer a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
