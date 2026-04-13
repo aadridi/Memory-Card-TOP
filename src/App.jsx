@@ -5,17 +5,11 @@ import Footer from './components/Footer.jsx';
 import { useState, useEffect } from 'react';
 
 function App() {
-	/*
-	1. Gérer l'ordre des images à chaque clic/re-render
-	2. Gérer un round et victoire/défaite (currentScore)
-	3. Gérer un game (bestScore)
-	*/
-
 	const initialCombination = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 	const [combination, setCombination] = useState(initialCombination);
 
 	function shuffleArray(array) {
-		/* Algorithme de Fisher-Yates to shuffle an Array*/
+		/* Algorithme de Fisher-Yates to shuffle an Array */
 		const newArray = [...array];
 
 		for (let i = newArray.length - 1; i > 0; i--) {
@@ -30,33 +24,36 @@ function App() {
 
 	const [imagesClicked, setImagesClicked] = useState([]);
 	const [currentScore, setCurrentScore] = useState(0);
+	const [bestScore, setBestScore] = useState(0);
 
 	function handleRound(e) {
 		const target = e.target.closest('img');
 
 		if (!target) return; // clic hors image
 
-		const id = target.dataset.id;
-		if (id === 1) {
-			console.log('Les images:' + imagesClicked);
+		const id = Number(target.dataset.id);
+		if (imagesClicked.includes(id)) {
+			console.log('You already clicked on this image!');
+			if (currentScore > bestScore) {
+				setBestScore(currentScore);
+			}
+			setCurrentScore(0);
+			setImagesClicked([]);
+			setCombination(initialCombination);
 		} else {
 			console.log('You clicked on: ' + id);
 			setImagesClicked((prev) => [...prev, id]);
 			setCurrentScore((score) => score + 1);
 			setCombination((prev) => shuffleArray(prev));
-			console.log(imagesClicked);
 		}
 	}
 
 	return (
 		<div className='app-container'>
 			<h1 className='app-title'>Pokemon Memory Game</h1>
-			<Header currentScore={currentScore} />
+			<Header currentScore={currentScore} bestScore={bestScore} />
 			<Gallery className='app-gallery' combination={combination} onGalleryClick={handleRound} />
 			<Footer className='app-footer' />
-			<p>Order: {combination.join(', ')}</p>
-			<p>You clicked on : {imagesClicked.join(', ')}</p>
-			<button onClick={() => setCombination((prev) => shuffleArray(prev))}>Shuffle Combination</button>
 		</div>
 	);
 }

@@ -4,10 +4,10 @@ export default function Footer() {
 			<p>© 2026 DRIDI Akrame-Amine</p>
 
 			<div className='footer-links'>
-				<a href='https://github.com/ton-profil' target='_blank' rel='noreferrer'>
+				<a href='https://github.com/aadridi/' target='_blank' rel='noreferrer'>
 					GitHub
 				</a>
-				<a href='https://facebook.com/ton-profil' target='_blank' rel='noreferrer'>
+				<a href='https://facebook.com/' target='_blank' rel='noreferrer'>
 					Facebook
 				</a>
 			</div>
